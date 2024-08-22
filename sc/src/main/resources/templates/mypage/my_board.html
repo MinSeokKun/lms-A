@@ -1,0 +1,70 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{layout}">
+<th:block layout:fragment="content">
+<div id="content">
+
+
+<section class="wrapper">
+    <div class="mypage_wrap">
+        <div class="container-fluid" id="content">
+            <div class="row">
+                <div class="course-list-title"><h2>내 질문 목록</h2></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4" th:each="board : ${boardList}">
+                    <div class="card shadow h-100">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary" th:text="${board.title}"></h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-body-p" th:text="${board.content}" style="width: 90%;"></p>
+                            <p class="text-danger small" 
+                                th:if="${board.commentList != null and !#lists.isEmpty(board.commentList)}" 
+                                th:text="'답변 수: ' + ${#lists.size(board.commentList)}"></p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted" th:text="'작성자: ' + ${board.author.name}"></small>
+                                <div>
+                                    <small class="text-muted" th:text="'등록일: ' + ${#temporals.format(board.createDate, 'yyyy-MM-dd')}"></small>
+                                    <small class="text-muted ms-2" th:if="${board.modifyDate != null}" th:text="'수정일: ' + ${#temporals.format(board.modifyDate, 'yyyy-MM-dd')}"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <a th:href="@{|/board/detail/${board.id}|}" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(boardList)}" class="alert alert-info">
+                작성하신 질문이 없습니다.
+            </div>
+            
+            <div class="page" th:if="${!boardList.isEmpty()}">
+                        
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${!boardList.hasPrevious} ? 'disabled'">
+                        <a class="page-link" th:href="@{|?page=${boardList.number-1}|}">
+                            <span>이전</span>
+                        </a>
+                    </li>
+                    <li th:each="page: ${#numbers.sequence(0, boardList.totalPages-1)}"
+                        th:if="${page >= boardList.number-5 and page <= boardList.number+5}"
+                        th:classappend="${page == boardList.number} ? 'active'" class="page-item">
+                        <a th:text="${page+1}" class="page-link" th:href="@{|?page=${page}|}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${!boardList.hasNext} ? 'disabled'">
+                        <a class="page-link" th:href="@{|?page=${boardList.number+1}|}">
+                            <span>다음</span>
+                        </a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+</th:block>
+</html>
