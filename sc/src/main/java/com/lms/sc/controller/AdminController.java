@@ -88,7 +88,7 @@ public class AdminController {
 		if (thumnailUrl != null && !thumnailUrl.isEmpty()) {
 			lectureService.updatethumnail(lecture.getId(), thumnailUrl);
 		}
-		return "redirect:/admin/lecList";
+		return "redirect:/admin/lecture/list";
 	}
 	
 	//강의 수정페이지 이동

@@ -94,18 +94,18 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 							<h5>최근질문</h5>
-							<a href="/my/question">전체보기</a>
+							<a href="/my/board">전체보기</a>
 						</div>
 						<div class="card-body">
-							<ul th:if="${not #lists.isEmpty(questionList)}">
-								<li th:each="question : ${questionList}">
-									<a class="text-gray-700 py-1 d-flex flex-row align-items-center justify-content-between" th:href="@{|/question/detail/${question.id}|}">
+							<ul th:if="${not #lists.isEmpty(boardList)}">
+								<li th:each="question : ${boardList}">
+									<a class="text-gray-700 py-1 d-flex flex-row align-items-center justify-content-between" th:href="@{|/board/detail/${question.id}|}">
 										<span>[[${question.title}]]</span>
 										<span>[[${#temporals.format(question.createDate, 'MM-dd HH:mm')}]]</span>
 									</a>                                  
 								</li>
 							</ul>
-							<p class="none_cont" th:if="${#lists.isEmpty(questionList)}">최근 작성한 질문이 없습니다.</p>
+							<p class="none_cont" th:if="${#lists.isEmpty(boardList)}">최근 작성한 질문이 없습니다.</p>
 						</div>
 					</div>
 				</div>
