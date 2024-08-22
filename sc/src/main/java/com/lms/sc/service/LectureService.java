@@ -91,7 +91,7 @@ public class LectureService {
 	
 	//강의 리스트
 	public List<Lecture> lecList(){
-		SiteUser admin = userRepository.findById(2).get();
+		SiteUser admin = userRepository.findByEmail("admin").get();
 		return lecRepo.findByAuthor(admin);
 	}
 	
