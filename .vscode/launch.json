@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ScApplication<sc>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.lms.sc.ScApplication",
+            "projectName": "sc",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
