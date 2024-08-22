@@ -95,6 +95,13 @@ public class LectureService {
 		return lecRepo.findByAuthor(admin);
 	}
 	
+	//유저 강의 리스트
+	public List<Lecture> UserLecList(String email){
+		SiteUser user = userRepository.findByEmail(email).get();
+		return lecRepo.findByAuthor(user);
+	}
+	
+	
 	public List<Lecture> lecListUser(String email) {
 		SiteUser author = userRepository.findByEmail(email).get();
 		return lecRepo.findByAuthor(author);

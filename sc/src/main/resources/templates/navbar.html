@@ -97,24 +97,18 @@
 	        </a>
 	    </div>
     </li>
-    <li sec:authorize="hasRole('USER')">
+    <li sec:authorize="isAuthenticated">
     	<div class="sidebar-heading">
 	        영상 관리
 	    </div>
 	    <div class="nav-item">
-	        <a class="nav-link collapsed" th:href="@{|/user/lecList|}">
+	        <a class="nav-link collapsed" th:href="@{|/user/lecture/list|}">
 	            <i class="fas fa-fw fa-wrench"></i>
 	            <span>강의 정보</span>
 	        </a>
 	    </div>
 	    <div class="nav-item">
-	        <a class="nav-link collapsed" th:href="@{|/user/userList|}">
-	            <i class="fas fa-fw fa-wrench"></i>
-	            <span>유저 정보</span>
-	        </a>
-	    </div>
-	    <div class="nav-item">
-	        <a class="nav-link collapsed" th:href="@{|/user/vidList|}">
+	        <a class="nav-link collapsed" th:href="@{|/user/video/list|}">
 	            <i class="fas fa-fw fa-wrench"></i>
 	            <span>영상 정보</span>
 	        </a>
