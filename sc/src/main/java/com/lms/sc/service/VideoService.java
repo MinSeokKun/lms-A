@@ -1,5 +1,6 @@
 package com.lms.sc.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,10 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lms.sc.entity.Lecture;
+import com.lms.sc.entity.SiteUser;
 import com.lms.sc.entity.Video;
+import com.lms.sc.repository.BoardRepository;
 import com.lms.sc.repository.LectureRepository;
 import com.lms.sc.repository.NoteRepository;
-import com.lms.sc.repository.BoardRepository;
 import com.lms.sc.repository.UserVideoRepository;
 import com.lms.sc.repository.VideoRepository;
 
@@ -32,6 +34,32 @@ public class VideoService {
 	public List<Video> allList() {
 		return videoRepo.findAll();
 	}
+	
+	//유저 비디오 가져오기
+//	public List<Video> allListByUser(SiteUser user) {
+//		List<Lecture> lecList = lecRepo.findByAuthor(user);
+//		for (Lecture lecture : lecList) {
+//			List<Video> videos = videoRepo.findAllByLecture(lecture);
+//		}
+//		return videoRepo.findAll();
+//	}
+//	
+	public List<Video> allListByUser(SiteUser user) {
+	    List<Video> result = new ArrayList<>();
+	    
+	    // 작성자가 등록한 모든 Lecture를 가져옴
+	    List<Lecture> lecList = lecRepo.findByAuthor(user);
+	    
+	    // 각 Lecture에 포함된 모든 비디오를 result 리스트에 추가
+	    for (Lecture lecture : lecList) {
+	        List<Video> videos = videoRepo.findAllByLecture(lecture);
+	        result.addAll(videos);
+	    }
+	    
+	    // 결과 리스트 반환
+	    return result;
+	}
+
 	
 	//비디오 하나 가져오기
 	public Video getVideo(long id) throws Exception {
