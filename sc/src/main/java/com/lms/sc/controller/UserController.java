@@ -3,8 +3,8 @@ package com.lms.sc.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,12 +29,13 @@ import com.lms.sc.createForm.TempPasswordForm;
 import com.lms.sc.createForm.UserCreateForm;
 import com.lms.sc.entity.Lecture;
 import com.lms.sc.entity.SiteUser;
+import com.lms.sc.entity.Video;
 import com.lms.sc.exception.DataNotFoundException;
 import com.lms.sc.exception.EmailException;
-import com.lms.sc.repository.UserRepository;
 import com.lms.sc.service.LectureService;
 import com.lms.sc.service.UserLectureService;
 import com.lms.sc.service.UserService;
+import com.lms.sc.service.VideoService;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
@@ -47,6 +48,7 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	
 	private final UserService userService;
+	private final VideoService videoService;
 	private final UserLectureService userLecService;
 	private final LectureService lecService;
 	private final PasswordEncoder passwordEncoder;
@@ -249,6 +251,7 @@ public class UserController {
         }
     }
     
+
     //아이디 찾기 결과 페이지
 //    @GetMapping("/find_id_result")
 //    public String resultId() {
