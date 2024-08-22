@@ -1,6 +1,6 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-	layout:decorate="~{layout}">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{layout}">
 <th:block layout:fragment="content">
 		<div id="content">
 		    <section>
@@ -25,21 +25,21 @@
 		                    <tr th:each="lecture, loop : ${lecture}">
 								<td>[[${loop.index + 1}]]</td>
 								<td>
-									<a th:href="@{|/admin/video/list/${lecture.id}|}">
+									<a th:href="@{|/user/video/list/${lecture.id}|}">
 										[[${lecture.title}]]
 									</a>
 								</td>
 								<td>[[${lecture.content}]]</td>
 								<td>[[${lecture.createDate}]]</td>
-								<td><a class="btn btn-success btn-circle" th:href="@{|/admin/video/addVideo/${lecture.id}|}"><i class="fa-solid fa-clapperboard"></i></a></td>
-								<td><a th:href="@{|/admin/lecture/modify/${lecture.id}|}" class="btn btn-info btn-circle"><i class="fa-solid fa-pen-to-square"></i></a></td>
-								<td><a th:href="@{|/admin/lecture/remove/${lecture.id}|}" onclick="return confirm('삭제하시겠습니까?')" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a></td>
+								<td><a class="btn btn-success btn-circle" th:href="@{|/video/addVideo/${lecture.id}|}"><i class="fa-solid fa-clapperboard"></i></a></td>
+								<td><a th:href="@{|/user/lecture/modify/${lecture.id}|}" class="btn btn-info btn-circle"><i class="fa-solid fa-pen-to-square"></i></a></td>
+								<td><a th:href="@{|/user/lecture/remove/${lecture.id}|}" onclick="return confirm('삭제하시겠습니까?')" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a></td>
 							</tr>
 		                </tbody>
 		            </table>
 		        </div>
 		        <div>
-		            <button type="button" class="btn btn-success btn-icon-split" onclick="location.href='/admin/lecture/regist'"><span class="text">등록</span></button>
+		            <button type="button" class="btn btn-success btn-icon-split" onclick="location.href='/user/lecture/regist'"><span class="text">등록</span></button>
 		        </div>
 		    </section>
 	    </div>
